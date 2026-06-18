@@ -3,114 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>天梁執衡 · 八字紫微對照報告</title>
+<title>天相守衡 · 八字紫微對照報告</title>
 <style>
-  :root {
-    --paper:#f5f1e8; --paper-deep:#ebe5d5; --paper-card:#faf6ec;
-    --ink:#2b2825; --ink-soft:#6b6660; --ink-faint:#a8a298;
-    --vermillion:#c1432f; --azure:#2e6d78; --jade:#4a7c4e;
-    --line:#8b8378; --line-soft:#c4bdb0; --line-faint:#e0d9c8;
-    --warn:#c97c3a;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin:0; padding:24px; background:var(--paper); color:var(--ink);
-    font-family:"Noto Serif TC","Microsoft JhengHei",serif; font-size:13px; line-height:1.65;
-  }
-  .report {
-    max-width:1080px; margin:0 auto; padding:28px; background:var(--paper);
-    border:1px solid var(--line); box-shadow:0 8px 32px rgba(0,0,0,.06);
-  }
-  .header {
-    display:grid; grid-template-columns:auto 1fr auto; gap:16px; align-items:start;
-    padding-bottom:18px; border-bottom:1px solid var(--line-soft); margin-bottom:20px;
-  }
-  .seal {
-    width:44px; height:44px; border:1.5px solid var(--vermillion); color:var(--vermillion);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    font-size:11px; letter-spacing:2px; line-height:1.1; transform:rotate(-3deg);
-  }
-  h1 { font-size:36px; margin:0 0 6px; letter-spacing:4px; font-weight:normal; }
-  .subtitle { font-size:13px; color:var(--ink-soft); letter-spacing:1px; }
-  .header-right { text-align:right; font-size:11px; color:var(--ink-soft); }
-  .meta-row { display:flex; gap:12px; justify-content:flex-end; margin-top:4px; font-size:12px; }
-  .meta-row b { color:var(--vermillion); font-weight:normal; }
-  .badge { display:inline-flex; padding:3px 10px; border:1px solid var(--jade); color:var(--jade); margin-top:6px; }
-  .top-grid { display:grid; grid-template-columns:240px 1fr; gap:16px; margin-bottom:16px; }
-  .info-card, .box, .section { background:var(--paper-card); border:1px solid var(--line-soft); }
-  .info-card { padding:14px 16px; font-size:12px; line-height:2; }
-  .info-card .row { display:flex; gap:8px; }
-  .key { color:var(--ink-soft); width:54px; }
-  .core-data { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:14px; }
-  .data-card { background:var(--paper-card); border:1px solid var(--line-soft); padding:10px 12px; text-align:center; }
-  .data-card .label { font-size:11px; color:var(--ink-soft); margin-bottom:4px; }
-  .data-card .value { font-size:22px; margin:4px 0; }
-  .data-card .conf { font-size:10px; color:var(--ink-faint); }
-  .axes-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  .axis-box { padding:10px; background:rgba(255,255,255,.42); border:1px dashed var(--line-soft); }
-  .axis-box .label { font-size:11px; color:var(--vermillion); margin-bottom:4px; }
-  .strengths { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
-  .strengths .box { padding:10px 12px; }
-  .box h4 { margin:0 0 8px; font-size:12px; color:var(--vermillion); }
-  .item { display:grid; grid-template-columns:16px 1fr; gap:6px; margin-bottom:6px; font-size:11px; }
-  .item .t { font-weight:bold; display:block; }
-  .item .d { color:var(--ink-soft); font-size:10px; line-height:1.5; }
-  .charts-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
-  .panel { background:var(--paper); border:1px solid var(--line); }
-  .panel h3 { margin:0; padding:8px 12px; font-size:13px; background:var(--paper-deep); border-bottom:1px solid var(--line-soft); }
-  .ziwei-grid {
-    display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(4,1fr);
-    height:540px; gap:1px; background:var(--line-soft);
-  }
-  .palace { background:var(--paper); padding:5px 6px; font-size:10px; display:flex; flex-direction:column; }
-  .palace.ming { box-shadow:inset 0 0 0 2px var(--vermillion); }
-  .p-head { display:flex; justify-content:space-between; border-bottom:1px dashed var(--line-soft); padding-bottom:2px; margin-bottom:4px; }
-  .p-gong { font-weight:bold; color:var(--ink); }
-  .palace.ming .p-gong { color:var(--vermillion); }
-  .star { font-size:12px; font-weight:bold; }
-  .aux { color:var(--ink-soft); line-height:1.5; }
-  .daxian { margin-top:auto; padding-top:4px; border-top:1px dashed var(--line-soft); color:var(--ink-soft); }
-  .current .daxian { color:var(--vermillion); font-weight:bold; }
-  .center {
-    grid-column:2/4; grid-row:2/4; background:var(--paper); border:1px solid var(--line);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:14px;
-  }
-  .pillars { display:flex; gap:8px; margin-top:12px; }
-  .pillar { background:var(--paper-deep); border:1px solid var(--line-soft); padding:4px 8px; }
-  .bazi-body { padding:12px; }
-  .bazi-pillars { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line-soft); }
-  .b-col { border-right:1px solid var(--line-faint); padding:8px 4px; text-align:center; }
-  .b-col:last-child { border-right:none; }
-  .b-head { font-size:10px; color:var(--ink-soft); }
-  .b-shishen { font-size:11px; color:var(--vermillion); }
-  .b-gan { font-size:30px; font-weight:bold; line-height:1.1; }
-  .b-zhi { font-size:24px; line-height:1.1; }
-  .b-canggan { font-size:9px; color:var(--ink-soft); line-height:1.5; min-height:50px; border-top:1px dashed var(--line-soft); margin-top:4px; padding-top:4px; }
-  .strip { margin-top:10px; border:1px solid var(--line-soft); }
-  .strip-head { background:var(--paper-deep); padding:4px 10px; font-size:11px; border-bottom:1px solid var(--line-soft); }
-  .strip-row { display:grid; grid-template-columns:repeat(10,1fr); }
-  .strip-cell { border-right:1px solid var(--line-faint); padding:4px 2px; text-align:center; font-size:9px; }
-  .strip-cell:last-child { border-right:none; }
-  .strip-cell.current { background:rgba(193,67,47,.08); color:var(--vermillion); font-weight:bold; }
-  .section { padding:14px 18px; margin-bottom:14px; background:var(--paper); }
-  .section h2 { margin:0 0 10px; font-size:14px; letter-spacing:1px; display:flex; align-items:center; gap:8px; }
-  .num-box { background:var(--ink); color:var(--paper); padding:2px 6px; font-size:11px; }
-  .row-2col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .axis-conclusion { background:var(--paper-card); border-left:3px solid var(--vermillion); padding:10px 14px; font-size:12px; line-height:1.9; }
-  .stage-grid, .cross-grid, .conflict-grid { display:grid; border:1px solid var(--line-soft); font-size:10px; }
-  .stage-grid { grid-template-columns:80px repeat(7,1fr); }
-  .cross-grid { grid-template-columns:80px repeat(6,1fr); }
-  .conflict-grid { grid-template-columns:100px 1fr 1fr 60px 1fr; }
-  .stage-grid > div, .cross-grid > div, .conflict-grid > div { padding:6px 5px; border-right:1px solid var(--line-faint); border-bottom:1px solid var(--line-faint); }
-  .ch, .lh, .sg-label, .stage-head { background:var(--paper-deep); font-weight:bold; }
-  .verdict { padding:2px 6px; border-radius:2px; font-size:10px; }
-  .yes { background:rgba(74,124,78,.15); color:var(--jade); }
-  .part { background:rgba(201,124,58,.15); color:var(--warn); }
-  .final-grid { display:grid; grid-template-columns:1fr 1.2fr 1fr 1fr 1fr; gap:12px; }
-  .final-block { background:var(--paper-card); border:1px solid var(--line-soft); padding:10px 12px; font-size:10px; line-height:1.6; }
-  .final-block h4 { margin:0 0 6px; font-size:11px; color:var(--ink-soft); }
-  .big { font-size:13px; line-height:1.7; color:var(--vermillion); font-weight:bold; }
-  .footer { text-align:center; font-size:11px; color:var(--ink-faint); margin-top:18px; padding-top:14px; border-top:1px solid var(--line-soft); }
+  :root{--paper:#f5f1e8;--deep:#ebe5d5;--card:#faf6ec;--ink:#2b2825;--soft:#6b6660;--faint:#a8a298;--red:#c1432f;--blue:#2e6d78;--green:#4a7c4e;--line:#8b8378;--line2:#c4bdb0;--line3:#e0d9c8;--warn:#c97c3a}
+  *{box-sizing:border-box} body{margin:0;padding:24px;background:var(--paper);color:var(--ink);font-family:"Noto Serif TC","Microsoft JhengHei",serif;font-size:13px;line-height:1.65}
+  .report{max-width:1080px;margin:0 auto;padding:28px;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 32px rgba(0,0,0,.06)}
+  .header{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;padding-bottom:18px;border-bottom:1px solid var(--line2);margin-bottom:20px}
+  .seal{width:44px;height:44px;border:1.5px solid var(--red);color:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;letter-spacing:2px;line-height:1.1;transform:rotate(-3deg)}
+  h1{font-size:36px;margin:0 0 6px;letter-spacing:4px;font-weight:normal}.subtitle{font-size:13px;color:var(--soft);letter-spacing:1px}.right{text-align:right;font-size:11px;color:var(--soft)}.meta{display:flex;gap:12px;justify-content:flex-end;margin-top:4px;font-size:12px}.meta b{color:var(--red);font-weight:normal}.badge{display:inline-flex;padding:3px 10px;border:1px solid var(--green);color:var(--green);margin-top:6px}
+  .top{display:grid;grid-template-columns:240px 1fr;gap:16px;margin-bottom:16px}.info,.box,.section{background:var(--card);border:1px solid var(--line2)}.info{padding:14px 16px;font-size:12px;line-height:2}.row{display:flex;gap:8px}.key{color:var(--soft);width:54px}
+  .core{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}.data{background:var(--card);border:1px solid var(--line2);padding:10px 12px;text-align:center}.label{font-size:11px;color:var(--soft);margin-bottom:4px}.value{font-size:22px;margin:4px 0}.conf{font-size:10px;color:var(--faint)}
+  .axes{display:grid;grid-template-columns:1fr 1fr;gap:10px}.axis{padding:10px;background:rgba(255,255,255,.42);border:1px dashed var(--line2)}.axis .label{color:var(--red)}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}.strengths{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.box{padding:10px 12px}.box h4{margin:0 0 8px;font-size:12px;color:var(--red)}.item{display:grid;grid-template-columns:16px 1fr;gap:6px;margin-bottom:6px;font-size:11px}.t{font-weight:bold;display:block}.d{color:var(--soft);font-size:10px;line-height:1.5}
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}.panel{background:var(--paper);border:1px solid var(--line)}.panel h3{margin:0;padding:8px 12px;font-size:13px;background:var(--deep);border-bottom:1px solid var(--line2)}
+  .zw{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);height:540px;gap:1px;background:var(--line2)}.palace{background:var(--paper);padding:5px 6px;font-size:10px;display:flex;flex-direction:column}.ming{box-shadow:inset 0 0 0 2px var(--red)}.phead{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line2);padding-bottom:2px;margin-bottom:4px}.pg{font-weight:bold}.ming .pg{color:var(--red)}.star{font-size:12px;font-weight:bold}.aux{color:var(--soft);line-height:1.5}.dx{margin-top:auto;padding-top:4px;border-top:1px dashed var(--line2);color:var(--soft)}.current .dx{color:var(--red);font-weight:bold}
+  .center{grid-column:2/4;grid-row:2/4;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px}.pillars{display:flex;gap:8px;margin-top:12px}.pillar{background:var(--deep);border:1px solid var(--line2);padding:4px 8px}
+  .bbody{padding:12px}.bpillars{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line2)}.bcol{border-right:1px solid var(--line3);padding:8px 4px;text-align:center}.bcol:last-child{border-right:none}.bhead{font-size:10px;color:var(--soft)}.bs{font-size:11px;color:var(--red)}.gan{font-size:30px;font-weight:bold;line-height:1.1}.zhi{font-size:24px;line-height:1.1}.cg{font-size:9px;color:var(--soft);line-height:1.5;min-height:50px;border-top:1px dashed var(--line2);margin-top:4px;padding-top:4px}
+  .strip{margin-top:10px;border:1px solid var(--line2)}.striphead{background:var(--deep);padding:4px 10px;font-size:11px;border-bottom:1px solid var(--line2)}.striprow{display:grid;grid-template-columns:repeat(10,1fr)}.cell{border-right:1px solid var(--line3);padding:4px 2px;text-align:center;font-size:9px}.cell:last-child{border-right:none}.cell.current{background:rgba(193,67,47,.08);color:var(--red);font-weight:bold}
+  .section{padding:14px 18px;margin-bottom:14px;background:var(--paper)}.section h2{margin:0 0 10px;font-size:14px;letter-spacing:1px;display:flex;align-items:center;gap:8px}.num{background:var(--ink);color:var(--paper);padding:2px 6px;font-size:11px}.note{background:var(--card);border-left:3px solid var(--red);padding:10px 14px;font-size:12px;line-height:1.9}
+  .grid,.cross,.risk{display:grid;border:1px solid var(--line2);font-size:10px}.grid{grid-template-columns:80px repeat(7,1fr)}.cross{grid-template-columns:80px repeat(6,1fr)}.risk{grid-template-columns:100px 1fr 1fr 60px 1fr}.grid>div,.cross>div,.risk>div{padding:6px 5px;border-right:1px solid var(--line3);border-bottom:1px solid var(--line3)}.ch,.lh,.sg{background:var(--deep);font-weight:bold}.tag{padding:2px 6px;border-radius:2px;font-size:10px}.yes{background:rgba(74,124,78,.15);color:var(--green)}.part{background:rgba(201,124,58,.15);color:var(--warn)}
+  .final{display:grid;grid-template-columns:1fr 1.2fr 1fr 1fr 1fr;gap:12px}.fb{background:var(--card);border:1px solid var(--line2);padding:10px 12px;font-size:10px;line-height:1.6}.fb h4{margin:0 0 6px;font-size:11px;color:var(--soft)}.big{font-size:13px;line-height:1.7;color:var(--red);font-weight:bold}.footer{text-align:center;font-size:11px;color:var(--faint);margin-top:18px;padding-top:14px;border-top:1px solid var(--line2)}
 </style>
 </head>
 <body>
@@ -118,108 +30,107 @@
   <header class="header">
     <div class="seal">命盤<br>對照</div>
     <div>
-      <div style="font-size:10px;color:var(--ink-soft);letter-spacing:2px;margin-bottom:4px">八字 + 紫微斗數對照報告</div>
-      <h1>天梁執衡</h1>
-      <div class="subtitle">規矩、責任與判斷力很重；事業以名聲、專業與穩健管理成局。</div>
+      <div style="font-size:10px;color:var(--soft);letter-spacing:2px;margin-bottom:4px">八字 + 紫微斗數對照報告</div>
+      <h1>天相守衡</h1>
+      <div class="subtitle">規矩、協調與責任感很重；真正的課題是壓力邊界與關係分寸。</div>
     </div>
-    <div class="header-right">
+    <div class="right">
       <div>產生日期：2026-06-18</div>
-      <div class="meta-row"><span>性別 <b>男</b></span><span>時辰 <b>卯時</b></span></div>
-      <div class="badge">對照一致性：中高</div>
+      <div class="meta"><span>性別 <b>男</b></span><span>時辰 <b>酉時</b></span></div>
+      <div class="badge">已依酉時重排</div>
     </div>
   </header>
 
-  <div class="top-grid">
-    <div class="info-card">
+  <div class="top">
+    <div class="info">
       <div class="row"><span class="key">陽曆</span><span>1980-05-12</span></div>
-      <div class="row"><span class="key">時間</span><span>05:30</span></div>
+      <div class="row"><span class="key">時間</span><span>17:30，酉時</span></div>
       <div class="row"><span class="key">農曆</span><span>庚申年三月廿八</span></div>
-      <div class="row"><span class="key">四柱</span><span>庚申 辛巳 乙酉 己卯</span></div>
-      <div class="row"><span class="key">命宮</span><span>天梁坐命</span></div>
+      <div class="row"><span class="key">四柱</span><span>庚申 辛巳 乙酉 乙酉</span></div>
+      <div class="row"><span class="key">命宮</span><span>天相坐命</span></div>
     </div>
     <div>
-      <div class="core-data">
-        <div class="data-card"><div class="label">日主</div><div class="value">乙木</div><div class="conf">巳月偏弱</div></div>
-        <div class="data-card"><div class="label">格局</div><div class="value">正官格</div><div class="conf">演算法判定中</div></div>
-        <div class="data-card"><div class="label">官殺</div><div class="value">金旺</div><div class="conf">規範與壓力明顯</div></div>
-        <div class="data-card"><div class="label">五行</div><div class="value">水弱</div><div class="conf">印星不足</div></div>
-        <div class="data-card"><div class="label">紫微</div><div class="value">火六局</div><div class="conf">命宮丑</div></div>
+      <div class="core">
+        <div class="data"><div class="label">日主</div><div class="value">乙木</div><div class="conf">巳月偏弱</div></div>
+        <div class="data"><div class="label">格局</div><div class="value">正官格</div><div class="conf">取月支藏庚透干</div></div>
+        <div class="data"><div class="label">官殺</div><div class="value">金極重</div><div class="conf">規範與壓力明顯</div></div>
+        <div class="data"><div class="label">五行</div><div class="value">水土弱</div><div class="conf">印星與財星不足</div></div>
+        <div class="data"><div class="label">紫微</div><div class="value">木三局</div><div class="conf">命宮未</div></div>
       </div>
-      <div class="axes-row">
-        <div class="axis-box"><div class="label">八字主軸</div>乙木日主偏弱，官殺金重，適合走制度、專業、管理、資格、責任型路線；要靠學習、貴人與穩定支援補強。</div>
-        <div class="axis-box"><div class="label">紫微主軸</div>天梁坐命，官祿宮太陽化祿，重名聲、公信力與服務價值；越到中年越適合站到台前承擔角色。</div>
+      <div class="axes">
+        <div class="axis"><div class="label">八字主軸</div>乙木日主偏弱，庚辛申酉金勢很重，日、時又雙酉，責任、制度、職位壓力與自我要求都很明顯。</div>
+        <div class="axis"><div class="label">紫微主軸</div>天相坐命，官祿宮在亥位見火星、天刑，重規矩、協調、判斷與制度性工作，但也容易有責任壓身感。</div>
       </div>
       <div class="strengths">
         <div class="box">
           <h4>優勢</h4>
-          <div class="item"><span>◆</span><span><span class="t">責任感重</span><span class="d">願意扛事，也容易被交付重要任務。</span></span></div>
-          <div class="item"><span>◆</span><span><span class="t">專業名聲</span><span class="d">官祿太陽化祿，利於曝光、職位與信任。</span></span></div>
-          <div class="item"><span>◆</span><span><span class="t">財務務實</span><span class="d">偏財透時，晚些更看重實際收益。</span></span></div>
+          <div class="item"><span>◆</span><span><span class="t">重承諾</span><span class="d">天相與正官格都重規則，做事有交代。</span></span></div>
+          <div class="item"><span>◆</span><span><span class="t">判斷謹慎</span><span class="d">官殺旺，對風險與責任有敏感度。</span></span></div>
+          <div class="item"><span>◆</span><span><span class="t">能守秩序</span><span class="d">適合制度、管理、行政、專業服務型角色。</span></span></div>
         </div>
         <div class="box">
           <h4>課題</h4>
-          <div class="item"><span>◇</span><span><span class="t">壓力偏重</span><span class="d">官殺旺，容易被規矩、責任或期待壓住。</span></span></div>
-          <div class="item"><span>◇</span><span><span class="t">內在補給不足</span><span class="d">水弱，長期過勞會讓判斷力乾枯。</span></span></div>
-          <div class="item"><span>◇</span><span><span class="t">關係衝突</span><span class="d">日時卯酉沖，親密關係與家庭節奏需協調。</span></span></div>
+          <div class="item"><span>◇</span><span><span class="t">壓力偏重</span><span class="d">金旺克木，容易把責任內化成焦慮。</span></span></div>
+          <div class="item"><span>◇</span><span><span class="t">關係容易較真</span><span class="d">夫妻宮廉貞貪狼，情感裡有熱度也有拉扯。</span></span></div>
+          <div class="item"><span>◇</span><span><span class="t">補給不足</span><span class="d">水弱，長期過勞會影響耐心與判斷。</span></span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="charts-grid">
+  <div class="charts">
     <div class="panel">
       <h3>紫微十二宮</h3>
-      <div class="ziwei-grid">
-        <div class="palace ming"><div class="p-head"><span class="p-gong">命宮</span><span>己丑</span></div><div class="star">天梁</div><div class="aux">鈴星 天魁 天喜</div><div class="daxian">6-15</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">兄弟</span><span>戊子</span></div><div class="star">廉貞 天相</div><div class="daxian">116-125</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">夫妻</span><span>丁亥</span></div><div class="star">巨門</div><div class="aux">天刑</div><div class="daxian">106-115</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">子女</span><span>丙戌</span></div><div class="star">貪狼</div><div class="daxian">96-105</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">財帛</span><span>乙酉</span></div><div class="star">太陰化科</div><div class="aux">擎羊</div><div class="daxian">86-95</div></div>
-        <div class="center"><h4>命盤中心</h4><div>陽男</div><div>身宮：交友宮</div><div>火六局</div><div class="pillars"><div class="pillar">庚<br>申</div><div class="pillar">辛<br>巳</div><div class="pillar">乙<br>酉</div><div class="pillar">己<br>卯</div></div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">疾厄</span><span>甲申</span></div><div class="star">紫微 天府</div><div class="aux">右弼 祿存 地空</div><div class="daxian">76-85</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">遷移</span><span>癸未</span></div><div class="star">天機</div><div class="aux">文昌 文曲 陀羅</div><div class="daxian">66-75</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">交友</span><span>壬午</span></div><div class="star">破軍</div><div class="aux">左輔</div><div class="daxian">56-65</div></div>
-        <div class="palace current"><div class="p-head"><span class="p-gong">官祿</span><span>辛巳</span></div><div class="star">太陽化祿</div><div class="aux">火星</div><div class="daxian">46-55 當前</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">田宅</span><span>庚辰</span></div><div class="star">武曲化權</div><div class="daxian">36-45</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">福德</span><span>己卯</span></div><div class="star">天同化忌</div><div class="aux">天姚</div><div class="daxian">26-35</div></div>
-        <div class="palace"><div class="p-head"><span class="p-gong">父母</span><span>戊寅</span></div><div class="star">七殺</div><div class="aux">天馬 地劫</div><div class="daxian">16-25</div></div>
+      <div class="zw">
+        <div class="palace ming"><div class="phead"><span class="pg">命宮</span><span>癸未</span></div><div class="star">天相</div><div class="aux">陀羅 鈴星 天鉞 紅鸞</div><div class="dx">3-12</div></div>
+        <div class="palace"><div class="phead"><span class="pg">兄弟</span><span>壬午</span></div><div class="star">巨門</div><div class="aux">左輔</div><div class="dx">113-122</div></div>
+        <div class="palace"><div class="phead"><span class="pg">夫妻</span><span>辛巳</span></div><div class="star">廉貞 貪狼</div><div class="dx">103-112</div></div>
+        <div class="palace"><div class="phead"><span class="pg">子女</span><span>庚辰</span></div><div class="star">太陰化科</div><div class="dx">93-102</div></div>
+        <div class="palace"><div class="phead"><span class="pg">財帛</span><span>己卯</span></div><div class="star">天府</div><div class="aux">天姚</div><div class="dx">83-92</div></div>
+        <div class="center"><h4>命盤中心</h4><div>陽男</div><div>身宮：兄弟宮</div><div>木三局</div><div class="pillars"><div class="pillar">庚<br>申</div><div class="pillar">辛<br>巳</div><div class="pillar">乙<br>酉</div><div class="pillar">乙<br>酉</div></div></div>
+        <div class="palace"><div class="phead"><span class="pg">疾厄</span><span>戊寅</span></div><div class="star">無主星</div><div class="aux">天馬 地空</div><div class="dx">73-82</div></div>
+        <div class="palace"><div class="phead"><span class="pg">遷移</span><span>己丑</span></div><div class="star">紫微 破軍</div><div class="aux">文昌 文曲 天魁 天喜</div><div class="dx">63-72</div></div>
+        <div class="palace"><div class="phead"><span class="pg">交友</span><span>戊子</span></div><div class="star">天機</div><div class="dx">53-62</div></div>
+        <div class="palace current"><div class="phead"><span class="pg">官祿</span><span>丁亥</span></div><div class="star">無主星</div><div class="aux">火星 天刑</div><div class="dx">43-52 當前</div></div>
+        <div class="palace"><div class="phead"><span class="pg">田宅</span><span>丙戌</span></div><div class="star">太陽化祿</div><div class="dx">33-42</div></div>
+        <div class="palace"><div class="phead"><span class="pg">福德</span><span>乙酉</span></div><div class="star">武曲化權 七殺</div><div class="aux">擎羊</div><div class="dx">23-32</div></div>
+        <div class="palace"><div class="phead"><span class="pg">父母</span><span>甲申</span></div><div class="star">天同 天梁</div><div class="aux">右弼 祿存 地劫</div><div class="dx">13-22</div></div>
       </div>
     </div>
 
     <div class="panel">
       <h3>八字四柱與大運</h3>
-      <div class="bazi-body">
-        <div class="bazi-pillars">
-          <div class="b-col"><div class="b-head">年柱</div><div class="b-shishen">正官</div><div class="b-gan">庚</div><div class="b-zhi">申</div><div class="b-canggan">庚正官、壬正印、戊正財</div></div>
-          <div class="b-col"><div class="b-head">月柱</div><div class="b-shishen">七殺</div><div class="b-gan">辛</div><div class="b-zhi">巳</div><div class="b-canggan">丙傷官、庚正官、戊正財</div></div>
-          <div class="b-col"><div class="b-head">日柱</div><div class="b-shishen">日主</div><div class="b-gan">乙</div><div class="b-zhi">酉</div><div class="b-canggan">辛七殺</div></div>
-          <div class="b-col"><div class="b-head">時柱</div><div class="b-shishen">偏財</div><div class="b-gan">己</div><div class="b-zhi">卯</div><div class="b-canggan">乙比肩</div></div>
+      <div class="bbody">
+        <div class="bpillars">
+          <div class="bcol"><div class="bhead">年柱</div><div class="bs">正官</div><div class="gan">庚</div><div class="zhi">申</div><div class="cg">庚正官、壬正印、戊正財</div></div>
+          <div class="bcol"><div class="bhead">月柱</div><div class="bs">七殺</div><div class="gan">辛</div><div class="zhi">巳</div><div class="cg">丙傷官、庚正官、戊正財</div></div>
+          <div class="bcol"><div class="bhead">日柱</div><div class="bs">日主</div><div class="gan">乙</div><div class="zhi">酉</div><div class="cg">辛七殺</div></div>
+          <div class="bcol"><div class="bhead">時柱</div><div class="bs">比肩</div><div class="gan">乙</div><div class="zhi">酉</div><div class="cg">辛七殺</div></div>
         </div>
-        <div class="strip"><div class="strip-head">大運</div><div class="strip-row">
-          <div class="strip-cell">壬午<br>9-18<br>正印/食神</div><div class="strip-cell">癸未<br>19-28<br>偏印/偏財</div><div class="strip-cell">甲申<br>29-38<br>劫財/正官</div><div class="strip-cell current">乙酉<br>39-48<br>比肩/七殺</div><div class="strip-cell">丙戌<br>49-58<br>傷官/正財</div><div class="strip-cell">丁亥<br>59-68<br>食神/正印</div><div class="strip-cell">戊子<br>69-78<br>正財/偏印</div><div class="strip-cell">-</div><div class="strip-cell">-</div><div class="strip-cell">-</div>
+        <div class="strip"><div class="striphead">大運</div><div class="striprow">
+          <div class="cell">壬午<br>9-18<br>正印/食神</div><div class="cell">癸未<br>19-28<br>偏印/偏財</div><div class="cell">甲申<br>29-38<br>劫財/正官</div><div class="cell current">乙酉<br>39-48<br>比肩/七殺</div><div class="cell">丙戌<br>49-58<br>傷官/正財</div><div class="cell">丁亥<br>59-68<br>食神/正印</div><div class="cell">戊子<br>69-78<br>正財/偏印</div><div class="cell">-</div><div class="cell">-</div><div class="cell">-</div>
         </div></div>
-        <div class="strip"><div class="strip-head">當前大運流年</div><div class="strip-row">
-          <div class="strip-cell">2018<br>39<br>戊戌</div><div class="strip-cell">2019<br>40<br>己亥</div><div class="strip-cell">2020<br>41<br>庚子</div><div class="strip-cell">2021<br>42<br>辛丑</div><div class="strip-cell">2022<br>43<br>壬寅</div><div class="strip-cell">2023<br>44<br>癸卯</div><div class="strip-cell">2024<br>45<br>甲辰</div><div class="strip-cell">2025<br>46<br>乙巳</div><div class="strip-cell current">2026<br>47<br>丙午</div><div class="strip-cell">2027<br>48<br>丁未</div>
+        <div class="strip"><div class="striphead">當前大運流年</div><div class="striprow">
+          <div class="cell">2018<br>39<br>戊戌</div><div class="cell">2019<br>40<br>己亥</div><div class="cell">2020<br>41<br>庚子</div><div class="cell">2021<br>42<br>辛丑</div><div class="cell">2022<br>43<br>壬寅</div><div class="cell">2023<br>44<br>癸卯</div><div class="cell">2024<br>45<br>甲辰</div><div class="cell">2025<br>46<br>乙巳</div><div class="cell current">2026<br>47<br>丙午</div><div class="cell">2027<br>48<br>丁未</div>
         </div></div>
       </div>
     </div>
   </div>
 
-  <div class="row-2col">
-    <section class="section"><h2><span class="num-box">01</span>主軸對照</h2><div class="axis-conclusion">八字乙木偏弱，官殺金重，呈現「責任、規範、壓力、職位」的主題；紫微天梁坐命，也偏向守法、講道理、重公信力與照顧他人。兩套盤都不是純冒險型，而是適合在制度、專業、管理、服務、顧問或公共信任領域建立位置。</div></section>
-    <section class="section"><h2><span class="num-box">02</span>時間線對照</h2><div class="stage-grid"><div class="sg-label">階段</div><div class="stage-head">9-18</div><div class="stage-head">19-28</div><div class="stage-head">29-38</div><div class="stage-head">39-48</div><div class="stage-head">49-58</div><div class="stage-head">59-68</div><div class="stage-head">69-78</div><div class="sg-label">八字</div><div>壬午</div><div>癸未</div><div>甲申</div><div>乙酉</div><div>丙戌</div><div>丁亥</div><div>戊子</div><div class="sg-label">紫微</div><div>命宮</div><div>父母</div><div>福德</div><div>田宅</div><div>官祿</div><div>交友</div><div>遷移</div></div><p>目前八字在乙酉大運尾段，紫微進入官祿太陽化祿大限。這幾年是把專業、名聲、職位與對外能見度整理起來的時期。</p></section>
+  <div class="twocol">
+    <section class="section"><h2><span class="num">01</span>主軸對照</h2><div class="note">酉時重排後，八字從「乙酉日、己卯時」改為「乙酉日、乙酉時」，金勢更集中，日主乙木承受的官殺壓力更重；紫微也從天梁坐命改為天相坐命。兩套盤對照後，主軸從單純責任與照顧，轉為「秩序、協調、公平、規矩、壓力邊界」。這張盤適合在制度型、管理型、專業服務型領域成局，但不宜長期把所有責任往自己身上收。</div></section>
+    <section class="section"><h2><span class="num">02</span>時間線對照</h2><div class="grid"><div class="sg">階段</div><div class="sg">9-18</div><div class="sg">19-28</div><div class="sg">29-38</div><div class="sg">39-48</div><div class="sg">49-58</div><div class="sg">59-68</div><div class="sg">69-78</div><div class="sg">八字</div><div>壬午</div><div>癸未</div><div>甲申</div><div>乙酉</div><div>丙戌</div><div>丁亥</div><div>戊子</div><div class="sg">紫微</div><div>命宮</div><div>父母</div><div>福德</div><div>田宅</div><div>官祿</div><div>交友</div><div>遷移</div></div><p>目前八字在乙酉大運尾段，紫微走官祿大限。事業責任與對外角色仍是主軸，但做法要更重視分工、流程與權責。</p></section>
   </div>
 
-  <div class="row-2col">
-    <section class="section"><h2><span class="num-box">03</span>六項交叉印證</h2><div class="cross-grid"><div class="ch"></div><div class="ch">事業</div><div class="ch">財運</div><div class="ch">感情</div><div class="ch">子女</div><div class="ch">家庭</div><div class="ch">健康</div><div class="lh">八字</div><div>官殺重，利職責與管理</div><div>偏財在時，重實利</div><div>卯酉沖，關係需磨合</div><div>食傷不算主軸</div><div>田宅與財務責任明顯</div><div>水弱，壓力補給不足</div><div class="lh">紫微</div><div>官祿太陽化祿</div><div>財帛太陰化科</div><div>夫妻巨門天刑</div><div>子女貪狼</div><div>田宅武曲化權</div><div>疾厄紫微天府</div><div class="lh">結論</div><div><span class="verdict yes">一致</span></div><div><span class="verdict yes">一致</span></div><div><span class="verdict yes">一致</span></div><div><span class="verdict part">保守看</span></div><div><span class="verdict yes">一致</span></div><div><span class="verdict part">需留意</span></div></div></section>
-    <section class="section"><h2><span class="num-box">04</span>矛盾與風險</h2><div class="conflict-grid"><div class="ch">議題</div><div class="ch">八字</div><div class="ch">紫微</div><div class="ch">影響</div><div class="ch">建議</div><div>壓力</div><div>官殺旺，日主偏弱</div><div>天梁重責任</div><div>高</div><div>分清責任邊界，不要全扛</div><div>關係</div><div>卯酉沖</div><div>夫妻巨門天刑</div><div>中</div><div>少用講理壓過感受</div><div>事業</div><div>乙酉運七殺壓身</div><div>官祿太陽化祿</div><div>中</div><div>用制度與專業曝光，不宜硬衝</div></div></section>
+  <div class="twocol">
+    <section class="section"><h2><span class="num">03</span>六項交叉印證</h2><div class="cross"><div class="ch"></div><div class="ch">事業</div><div class="ch">財運</div><div class="ch">感情</div><div class="ch">子女</div><div class="ch">家庭</div><div class="ch">健康</div><div class="lh">八字</div><div>官殺極重，利制度職責</div><div>財星弱，先守後取</div><div>雙酉自刑，容易較真</div><div>食傷不主軸</div><div>規矩與壓力感明顯</div><div>水弱金旺，需補休息</div><div class="lh">紫微</div><div>官祿火星天刑</div><div>財帛天府</div><div>夫妻廉貞貪狼</div><div>太陰化科</div><div>田宅太陽化祿</div><div>疾厄見天馬地空</div><div class="lh">結論</div><div><span class="tag yes">一致</span></div><div><span class="tag part">保守取財</span></div><div><span class="tag yes">一致</span></div><div><span class="tag part">保守看</span></div><div><span class="tag yes">一致</span></div><div><span class="tag part">需留意</span></div></div></section>
+    <section class="section"><h2><span class="num">04</span>矛盾與風險</h2><div class="risk"><div class="ch">議題</div><div class="ch">八字</div><div class="ch">紫微</div><div class="ch">影響</div><div class="ch">建議</div><div>壓力</div><div>金旺克木，日時雙酉</div><div>官祿火星天刑</div><div>高</div><div>用流程分責，不要硬扛</div><div>感情</div><div>酉酉自刑，心裡反覆</div><div>夫妻廉貞貪狼</div><div>中</div><div>少試探，多明講界線</div><div>財務</div><div>土財弱，財不宜躁進</div><div>財帛天府</div><div>中</div><div>穩健累積，重現金流</div></div></section>
   </div>
 
-  <section class="section"><h2><span class="num-box">05</span>綜合結論</h2><div class="final-grid"><div class="final-block"><h4>人生主軸</h4><div class="big">以責任立身，以專業成名。</div></div><div class="final-block"><h4>節點</h4>29-38：競爭與職涯定位。<br>39-48：壓力、規範、關係磨合。<br>46-55：官祿大限，事業能見度上升。<br>49-58：財務與成果轉換期。<br>59後：學習、人脈與生活重心再整理。</div><div class="final-block"><h4>風險</h4>2026 火旺，容易急躁與過勞。<br>2027 大運轉折前後，關係與職責需重整。<br>長期要補睡眠與情緒緩衝。</div><div class="final-block"><h4>槓桿</h4>資格、專業、制度、信任。<br>適合管理、顧問、服務、技術專業與公信力型工作。</div><div class="final-block"><h4>建議</h4>建立明確分工。<br>維持學習與證照。<br>少把壓力悶在心裡。<br>財務以穩健配置為主。</div></div></section>
+  <section class="section"><h2><span class="num">05</span>綜合結論</h2><div class="final"><div class="fb"><h4>人生主軸</h4><div class="big">以秩序立身，以分寸成事。</div></div><div class="fb"><h4>節點</h4>29-38：職涯競爭與規範成形。<br>39-48：壓力、責任與人際邊界集中。<br>43-52：官祿大限，事業角色被看見。<br>49-58：成果與財務轉換期。<br>59後：學習、休養與人脈重整。</div><div class="fb"><h4>風險</h4>2026 火旺，容易急躁與過勞。<br>2027 大運尾聲，責任與關係需重新分配。<br>長期注意睡眠、神經緊繃與壓力型不適。</div><div class="fb"><h4>槓桿</h4>制度能力、協調能力、專業信任。<br>適合管理、行政、合規、顧問、技術服務與組織協調。</div><div class="fb"><h4>建議</h4>責任先界定再承擔。<br>財務先穩後攻。<br>關係中少冷處理。<br>定期安排休息與復盤。</div></div></section>
 
-  <section class="section"><h2><span class="num-box">06</span>可信度說明</h2><div class="axis-conclusion">出生資訊已確認為陽曆 1980-05-12 05:30，男性。此報告以演算法排盤結果作對照分析，命理屬於自我理解與節奏觀察工具，不作絕對預言；醫療、法律、投資與重大人生決策，仍應以專業意見與現實資料為主。</div></section>
-
-  <div class="footer">八字紫微對照報告 · 1980-05-12 05:30 · 男性</div>
+  <section class="section"><h2><span class="num">06</span>可信度說明</h2><div class="note">本報告已依修正後資料重排：陽曆 1980-05-12，17:30 酉時，男性。若實際時間落在 17:00-18:59 之間，八字時柱與紫微時辰同屬酉時；若不是酉時，盤面需再次重排。命理屬於自我理解與節奏觀察工具，不作絕對預言；醫療、法律、投資與重大人生決策仍應以專業意見與現實資料為主。</div></section>
+  <div class="footer">八字紫微對照報告 · 1980-05-12 17:30 · 男性 · 酉時版</div>
 </div>
 </body>
 </html>
